@@ -1,14 +1,34 @@
+import { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
+
 export default function ThemeToggle() {
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-  };
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   return (
     <button
-      onClick={toggleTheme}
-      className="px-4 py-2 rounded-full bg-roseGold text-white dark:bg-antiqueGold dark:text-black"
+      onClick={() => setDarkMode(!darkMode)}
+      className="relative w-12 h-12 flex items-center justify-center
+      rounded-full border
+      border-roseGold dark:border-antiqueGold
+      bg-white/30 dark:bg-black/40
+      backdrop-blur-md
+      shadow-lg
+      transition-all duration-300
+      hover:scale-110"
     >
-      Toggle Mode
+      {darkMode ? (
+        <Sun className="text-antiqueGold" size={20} />
+      ) : (
+        <Moon className="text-roseGold" size={20} />
+      )}
     </button>
   );
 }
