@@ -23,6 +23,7 @@ export default function App() {
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           </Route>
         </Routes>
+        
       </div>
     </Router>
   );
